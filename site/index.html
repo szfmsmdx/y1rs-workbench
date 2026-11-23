@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f6f5f1">
+  <meta name="description" content="Colnago Y1Rs 公路车装车工作台：查看零件、切换原厂涂装，记录你的装车配置。">
+  <title>Colnago Y1Rs · 装车工作台</title>
+  <link rel="preconnect" href="https://s1j79ihp.user.webaccel.jp">
+  <link rel="preconnect" href="https://a.storyblok.com">
+  <link rel="icon" href="./mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="shell masthead-inner">
+      <div class="brand"><img src="./mark.svg" width="36" height="36" alt=""><span>装车工作台<small>VELO WORKSHOP</small></span></div>
+      <button type="button" id="build-trigger" class="build-trigger" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 3h14v18H5zM9 8h6M9 12h6M9 16h4"/></svg>
+        我的配置 <span id="build-count" class="build-count">0</span>
+      </button>
+    </div>
+  </header>
+  <main class="shell">
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow"><span class="signal"></span> 公路车配置器 <span class="intro-line"></span> ROAD / AERO</p>
+        <h1 id="page-title"><span>Colnago</span> Y1Rs<span class="period">.</span></h1>
+      </div>
+      <p class="intro-copy">从一副车架，到你自己的公路车。<br>在车图上查看规格，再把想用的零件加入配置。</p>
+    </section>
+
+    <div class="workspace">
+      <section class="stage" aria-label="Y1Rs 交互式整车图">
+        <div class="stage-toolbar">
+          <div>
+            <div class="palette-title"><strong>车架涂装</strong><span id="paint-code" class="mono"></span></div>
+            <div id="palette" class="palette" role="group" aria-label="选择原厂涂装"></div>
+          </div>
+        </div>
+        <div id="diagram" class="diagram">
+          <div id="side-view" class="photo-view">
+            <img id="bike-photo" class="bike-photo" width="1840" height="1374" fetchpriority="high" draggable="false" alt="Colnago Y1Rs 官方侧视照片">
+          </div>
+          <p id="media-status" class="media-status" role="status" hidden></p>
+          <div id="preview" class="part-preview" hidden aria-hidden="true"></div>
+        </div>
+        <div class="stage-footer">
+          <span class="desktop-hint">悬停查看零件 · 点击选择</span>
+          <span class="touch-hint">点选车图上的零件</span>
+        </div>
+      </section>
+
+      <aside class="details" id="details" aria-label="部件详情"></aside>
+    </div>
+    <section class="budget-bar" aria-labelledby="budget-title">
+      <div class="budget-head">
+        <h2 id="budget-title">装车预算</h2>
+        <p id="budget-counts"></p>
+      </div>
+      <strong id="budget-amount" aria-live="polite"></strong>
+      <a id="budget-trigger" class="budget-trigger" href="#shopping">查看购置清单</a>
+    </section>
+    <section class="index" aria-labelledby="index-title">
+      <div class="index-heading"><h2 id="index-title">部件与套件</h2><button id="fill-defaults" class="defaults-button" type="button" title="用默认配置补齐未选项，保留已选配置">一键默认</button></div>
+      <div id="parts-index" class="parts-index" role="group" aria-label="按系统查看零件和套件"></div>
+    </section>
+    <section class="shopping" id="shopping" aria-labelledby="shopping-title">
+      <div class="shopping-head">
+        <div>
+          <h2 id="shopping-title">购置清单</h2>
+          <p id="shopping-count"></p>
+        </div>
+        <div class="shopping-total">
+          <span>已选小计 · 人民币</span>
+          <strong id="shopping-total"></strong>
+        </div>
+      </div>
+      <div id="shopping-body"></div>
+    </section>
+  </main>
+  <footer class="shell footer">
+    <span>VELO WORKSHOP <span class="footer-sep">/</span> Y1RS</span>
+    <span>独立装车工具 · 图片：<a href="https://shifta.jp/colnago/product/y1rs/" target="_blank" rel="noopener">Colnago</a></span>
+  </footer>
+  <dialog id="build-dialog" aria-labelledby="build-title">
+    <div class="dialog-head">
+      <div><p class="eyebrow">YOUR BUILD</p><h2 id="build-title">我的配置</h2></div>
+      <form method="dialog"><button class="icon-button" aria-label="关闭配置" value="close">×</button></form>
+    </div>
+    <div id="build-body"></div>
+  </dialog>
+  <div id="announcement" class="sr-only" role="status"></div>
+</body>
+</html>
